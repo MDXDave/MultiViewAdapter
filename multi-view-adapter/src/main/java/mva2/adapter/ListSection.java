@@ -273,6 +273,26 @@ public class ListSection<M> extends Section {
   }
 
   /**
+   * Sets the selected items from given list. The model class of items must properly implement equals method.
+   *
+   * @param selectedItems items which should be selected
+   */
+  public void setSelectedItems(List<M> selectedItems) {
+    this.metaDataList = new ArrayList<>(dataList.size());
+    int position = 0;
+    for (M item : dataList) {
+      ItemMetaData metaData = new ItemMetaData();
+      this.metaDataList.add(metaData);
+      if (selectedItems.contains(item)) {
+        metaData.setSelected(true);
+        onChanged(position, 1, SELECTION_PAYLOAD);
+        notifySelectionChanged(position);
+      }
+      position++;
+    }
+  }
+
+  /**
    * Removes the element at the specified position in this list (optional operation).  Shifts any
    * subsequent elements to the left (subtracts one from their indices). If the element is removed
    * {@link RecyclerView.ItemAnimator}'s remove animation will be called.

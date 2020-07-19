@@ -16,6 +16,7 @@
 
 package mva2.adapter;
 
+import java.util.ArrayList;
 import java.util.List;
 import mva2.adapter.testconfig.TestItem;
 import mva2.adapter.util.Mode;
@@ -80,6 +81,29 @@ import static org.mockito.Mockito.verify;
 
     listSection1.clearSelections();
     verify(adapterDataObserver, times(4)).notifyItemRangeChanged(anyInt(), anyInt(), any());
+    assertEquals(listSection1.getSelectedItems().size(), 0);
+  }
+
+  @Test public void setSelectedItems_test() {
+    listSection1.setSelectionMode(Mode.MULTIPLE);
+    assertEquals(listSection1.getSelectedItems().size(), 0);
+
+    List<TestItem> data = listSection1.getData();
+    List<TestItem> selectedItems = new ArrayList<>();
+    selectedItems.add(data.get(0));
+    selectedItems.add(data.get(2));
+    selectedItems.add(data.get(3));
+    selectedItems.add(data.get(6));
+    listSection1.setSelectedItems(selectedItems);
+    assertEquals(listSection1.getSelectedItems(), selectedItems);
+
+    selectedItems.clear();
+    selectedItems.add(data.get(9));
+    selectedItems.add(data.get(10));
+    listSection1.setSelectedItems(selectedItems);
+    assertEquals(listSection1.getSelectedItems(), selectedItems);
+
+    listSection1.clearSelections();
     assertEquals(listSection1.getSelectedItems().size(), 0);
   }
 
