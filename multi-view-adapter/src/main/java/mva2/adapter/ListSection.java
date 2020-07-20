@@ -278,6 +278,10 @@ public class ListSection<M> extends Section {
    * @param selectedItems items which should be selected
    */
   public void setSelectedItems(List<M> selectedItems) {
+    if (selectedItems == null) {
+      return;
+    }
+
     this.metaDataList = new ArrayList<>(dataList.size());
     int position = 0;
     for (M item : dataList) {
