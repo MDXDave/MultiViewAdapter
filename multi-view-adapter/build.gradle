@@ -20,6 +20,9 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.novoda.bintray-release'
 apply plugin: 'guru.stefma.artifactorypublish'
 apply plugin: 'jacoco'
+apply plugin: 'com.github.dcendents.android-maven'
+
+group='com.github.kacer'
 
 jacoco {
   toolVersion = "0.8.2"

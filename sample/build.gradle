@@ -17,6 +17,9 @@
 import gradle.Config
 
 apply plugin: 'com.android.application'
+apply plugin: 'com.github.dcendents.android-maven'
+
+group='com.github.kacer'
 
 android {
   compileSdkVersion Config.TARGET_SDK
